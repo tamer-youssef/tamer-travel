@@ -1,0 +1,186 @@
+openapi: 3.0.0
+
+info:
+  title: Tamer Travel API Documentation
+  description: Welcome to the API documentation for Tamer Travel.
+  contact:
+    name: Tamer
+    email: "tameryoussef2@gmail.com"
+    url: "https://github.com/tamer-youssef/tamer-travel"
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/api
+
+paths:
+  /countries:
+    get:
+      tags:
+        - User
+      summary: Get a list of all countries.
+            
+      responses:
+        '200':
+          description: List of countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+    post:
+      tags:
+        - Admin
+      summary: Add a new country
+      requestBody:
+        description: Country object to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Country'
+      responses:
+        '201':
+          description: Country added successfully
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+    put:
+      tags:
+        - Admin
+      summary: Update an existing country
+      parameters:
+        - name: Name
+          in: query
+          description: Name of the country to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+          description: Updated country information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+      responses:
+        '200':
+          description: Country updated successfully
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+    delete:
+      tags:
+        - Admin
+      summary: Remove a country
+      parameters:
+        - name: Name
+          in: query
+          description: Name of the country to remove
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Country removed successfully
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+  /countries/name:
+    get:
+      tags:
+        - User
+      summary: Get a list of countries by name.
+      parameters:
+        - name: Name
+          required: true
+          in: query
+          description: Name of the country
+          schema:
+            type: string
+
+            
+      responses:
+        '200':
+          description: List of countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+  /countries/budget:
+    get:
+      tags:
+        - User
+      summary: Get a list of countries by budget.
+      parameters:
+        - name: Budget
+          required: true
+          in: query
+          description: Budget for the trip
+          schema:
+            type: integer
+            
+      responses:
+        '200':
+          description: List of countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Country:
+      type: object
+      properties:
+          name:
+            type: string
+            example: Bulgaria
+          description:
+            type: string
+            example: A Balkan country known for its stunning mountains, beaches, and ancient historic sites. Famous for its rose oil and traditional yogurt.
+          nationality:
+            type: string
+            example: Bulgarian
+          currency:
+            type: string
+            example: BGN
+          latitude:
+            type: integer
+            example: 42.73
+          longitude:
+            type: integer
+            example: 25.48
+          budget:
+            type: integer
+            example: 400
+
+tags:
+  - name: User
+    description: These endpoints are accessible by the user.
+    
+  - name: Admin
+    description: These endpoints are accessible by the admin.
+
