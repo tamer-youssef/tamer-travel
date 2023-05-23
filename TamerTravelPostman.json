@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "3156157a-a9e7-4953-ba73-5df5afbfac3d",
+		"name": "Tamer Travel Database",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26979143"
+	},
+	"item": [
+		{
+			"name": "all countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/countries/"
+			},
+			"response": []
+		},
+		{
+			"name": "country (by name)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/countries/name/{{cName}}"
+			},
+			"response": []
+		},
+		{
+			"name": "country (by budget)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/countries/budget/{{cBudget}}"
+			},
+			"response": []
+		},
+		{
+			"name": "country",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Tamer Country\",\r\n    \"description\" : \"Tamer Country is very very cool you should visit it soon.\",\r\n    \"nationality\" : \"Tameran\",\r\n    \"currency\" : \"TMR\",\r\n    \"latitude\" : \"23\",\r\n    \"longitude\" : \"60\",\r\n    \"budget\" : \"832479\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/countries/"
+			},
+			"response": []
+		},
+		{
+			"name": "existing country data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"\",\r\n    \"nationality\" : \"\",\r\n    \"currency\" : \"USD\",\r\n    \"latitude\" : \"\",\r\n    \"longitude\" : \"\",\r\n    \"budget\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/countries/Russia"
+			},
+			"response": []
+		},
+		{
+			"name": "country (by name)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\" : \"\",\r\n    \"nationality\" : \"\",\r\n    \"currency\" : \"\",\r\n    \"latitude\" : \"\",\r\n    \"longitude\" : \"\",\r\n    \"budget\" : \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/countries/name/{{cName}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cName",
+			"value": "Albania"
+		},
+		{
+			"key": "cBudget",
+			"value": "300"
+		}
+	]
+}
